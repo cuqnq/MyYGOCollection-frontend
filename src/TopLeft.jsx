@@ -1,15 +1,39 @@
 import './TopLeft.css';
 import SearchBar from './SearchBar';
-import FilterBtn from './FilterBtn';
-import AddButton from './AddButton';
+import MenuIcon from './assets/habakiri_placeholder.png';
+import Button from './Button';
 
 function TopLeft() {
   return (
     <div className="top-left">
-      Top left.
-        <FilterBtn />
+        <img src = {MenuIcon} alt = "Habakiri was here." />
+
+        <Button 
+          label="Decks" 
+          color="blue" 
+          fontSize="24px" 
+          padding="6px 12px"
+          style={{ marginLeft: 'auto' }} /*Any button after this line will be shifted towards the bottom right */
+          /*Buttons before are not affected*/
+
+          onClick={() => alert("Decks button clicked!")} 
+        />
+
+        <Button 
+          label="Filter" 
+          color="gray" 
+          fontSize="24px" 
+          padding="6px 12px" 
+        />
+
         <SearchBar />
-        <AddButton /> 
+
+        <Button 
+          label="Add Card" 
+          color="green" 
+          fontSize="18px" 
+          padding="8px 16px" 
+        />
     </div>
   );
 }

@@ -1,0 +1,23 @@
+.app-button{
+    align-self: flex-end; /*Positions these buttons at the bottom right */
+    padding: 6px;
+}
+.app-button button {
+  color: white;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.app-button button:hover {
+  opacity: 0.85;
+}
+
+.app-button button:active {
+  transform: scale(0.96);
+}
+
+.app-button:first-child {
+    margin-left: auto;
+}
