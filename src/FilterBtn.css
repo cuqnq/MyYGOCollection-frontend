@@ -1,0 +1,11 @@
+.BtnFilter{
+    border-radius: 25px;
+    margin-left: auto; /*This line MUST be on the FIRST item */
+    /* As of now (09/07/2026), the order is Filter --> Search --> Add Card */
+    align-self: flex-end;
+    padding: 6px;
+}
+
+.BtnFilter button {
+    font-size: 16px;
+}
