@@ -1,3 +1,5 @@
 .bottom-left {
-  border-right: 1px solid black;
+  border: 2px solid var(--border);
+  background-color: var(--platinum);
+  flex-wrap: wrap;
 }

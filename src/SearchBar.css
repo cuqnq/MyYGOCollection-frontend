@@ -1,9 +1,10 @@
 .search-bar input {
-  width: 375px;
+  width: clamp(175px, 25%, 375px);
+  min-width: 0;
   padding: 8px 12px;
   font-size: 25px;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 

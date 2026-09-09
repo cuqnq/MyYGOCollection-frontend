@@ -1,8 +1,37 @@
+:root {
+/*for more information, visit: https://www.w3schools.com/htmlcss/htmlcss_variables.asp */
+  --platinum: #E7ECEF;
+  --dusk-blue: #274C77;
+  --steel-blue: #6096BA;
+  --icy-blue: #A3CEF1;
+  --grey-olive: #8B8C89;
+
+  --bg: var(--platinum);
+  --text: var(--dusk-blue);
+  --border: var(--grey-olive);
+  --accent: var(--steel-blue);
+  --accent-hover: var(--icy-blue);
+}
+
+/*
+Blue-Eyes White Dragon theme
+Consider these colors:
+text: - #1B1B2F
+Background: #E7ECEF
+Primary: #A9D6E5
+Secondary: #468FAF
+Accent: #1B4965
+*/
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 15px;
   font-family: Arial, sans-serif;
+}
+
+html {
+  font-size: clamp(14px, 1.2vw, 18px);
 }
 
 #root {

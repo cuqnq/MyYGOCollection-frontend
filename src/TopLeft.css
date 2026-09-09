@@ -1,8 +1,14 @@
 .top-left {
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  /* border-right: 1px solid black;
+  border-bottom: 1px solid black; */
+  border-right: 2px solid var(--border);
+  border-top: 2px solid var(--border);
+  border-left: 2px solid var(--border);
+  border-bottom: 0px solid var(--border);
+  background-color: var(--bg);
 
   display: flex;
+  flex-wrap: wrap;
   /* justify-content: flex-end;  /*Horizontal positioning parent*/
   padding: 16px;
 }
