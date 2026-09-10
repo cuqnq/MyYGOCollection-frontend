@@ -2,13 +2,28 @@
   /* border-right: 1px solid black;
   border-bottom: 1px solid black; */
   border-right: 2px solid var(--border);
-  border-top: 2px solid var(--border);
-  border-left: 2px solid var(--border);
+  border-top: 6px solid var(--border);
+  border-left: 6px solid var(--border);
   border-bottom: 0px solid var(--border);
   background-color: var(--bg);
 
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  /* justify-content: flex-end;  /*Horizontal positioning parent*/
   padding: 16px;
+  gap: 12px;
+}
+
+.top-left-logo {
+  height: 48px;
+  width: auto;
+  border-radius: 6px;
+}
+
+.top-left-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }

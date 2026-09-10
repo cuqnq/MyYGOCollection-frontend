@@ -1,15 +1,15 @@
 .search-bar input {
-  width: clamp(175px, 25%, 375px);
+  width: clamp(160px, 22vw, 320px);
   min-width: 0;
   padding: 8px 12px;
-  font-size: 25px;
-  border: 1px solid #ccc;
+  font-size: 15px;
+  border: 1px solid var(--border);
   border-radius: 10px;
   box-sizing: border-box;
 }
 
 .search-bar {  
-   /* margin-left: auto; */
+    display: flex;
     align-self: flex-end;
-  /*  padding: 3px; */
+    align-items: center;
 }

@@ -1,14 +1,14 @@
-.app-button{
-    align-self: flex-end; /*Positions these buttons at the bottom right */
+/*.app-button{
+    align-self: flex-end; /*Positions these buttons at the bottom right 
     padding: 6px;
-}
+    */
 
 .app-button button {
   color: white;
   font-size: clamp(5px, 1.5vw, 50px);
   padding: clamp(4px, 1vw, 12px);
   min-width: 0;
-  width: clamp(100px, 20%, 375px);
+  width: clamp(70px, 12vw, 110px);
   border-radius: 15px;
   border: none;
   cursor: pointer;
@@ -23,6 +23,7 @@
   transform: scale(0.96);
 }
 
+/*
 .app-button:first-child {
     margin-left: auto;
-}
+}*/
