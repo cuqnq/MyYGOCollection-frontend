@@ -5,10 +5,11 @@
   --steel-blue: #6096BA;
   --icy-blue: #A3CEF1;
   --grey-olive: #8B8C89;
+  --gold: #D1B200;
 
   --bg: var(--platinum);
   --text: var(--dusk-blue);
-  --border: var(--grey-olive);
+  --border: var(--grey-olive); /*grey olive is the original color */
   --accent: var(--steel-blue);
   --accent-hover: var(--icy-blue);
 }

@@ -41,8 +41,14 @@ function BottomLeft() {
     <div className="bottom-left">
       <ul className="card-list">
         {cards.map((card) => (
-          // key is required by React for list items
           <li key={card.id} className="card-list-item">
+            {card.image_url && (
+              <img
+                src={card.image_url}
+                alt={card.card_name}
+                className="card-thumbnail"
+              />
+            )}
             {card.card_name} — {card.rarity} (x{card.quantity})
           </li>
         ))}

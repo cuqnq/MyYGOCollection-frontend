@@ -1,7 +1,7 @@
 import "./App.css";
-import TopLeft from './TopLeft';
-import BottomLeft from './BottomLeft';
-import RightSideBar from './CardDisplaySideBar';
+import TopLeft from './components/TopLeft';
+import BottomLeft from './components/BottomLeft';
+import RightSideBar from './components/CardDisplaySideBar';
 
 function App() {
   return (

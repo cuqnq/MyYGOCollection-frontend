@@ -3,6 +3,7 @@
   min-width: 0;
   padding: 8px 12px;
   font-size: 15px;
+  color: var(--gold);
   border: 1px solid var(--border);
   border-radius: 10px;
   box-sizing: border-box;

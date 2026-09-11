@@ -1,7 +1,7 @@
 import './TopLeft.css';
-import SearchBar from './SearchBar';
-import MenuIcon from './assets/habakiri_placeholder.png';
-import Button from './Button';
+import SearchBar from './ui_tools/SearchBar';
+import MenuIcon from '../assets/habakiri_placeholder.png';
+import Button from './ui_tools/Button';
 
 function TopLeft() {
   return (
@@ -19,7 +19,7 @@ function TopLeft() {
           /* style={{ marginLeft: 'auto' }} /*Any button after this line will be shifted towards the bottom right */
           /*Buttons before are not affected*/
 
-          onClick={() => alert("Decks button clicked!")} 
+          onClick={() => alert("Deck feature will be coming soon in the future!")} 
         />
 
         <Button 
