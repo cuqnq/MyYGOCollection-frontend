@@ -1,0 +1,20 @@
+.filter-backdrop {
+  /* cover the entire screen, not just the parent container */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* dim what's behind it and blur it */
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+
+  /* sit above everything else, including the grid layout */
+  z-index: 1000;
+
+  /* center whatever is passed in as children, i.e. FilterPanel */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
