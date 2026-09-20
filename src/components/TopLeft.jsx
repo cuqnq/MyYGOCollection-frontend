@@ -1,12 +1,12 @@
 import './TopLeft.css';
 import SearchBar from './ui_tools/SearchBar';
-import MenuIcon from '../assets/habakiri_placeholder.png';
+import MenuIcon from '../assets/HABAKIRI_SoTa.png';
 import Button from './ui_tools/Button';
 
 function TopLeft() {
   return (
     <div className="top-left">
-        <img src = {MenuIcon} alt = "Habakiri was here." />
+        <img className ="top-left-logo" img src = {MenuIcon} alt = "Habakiri was here." />
 
 
 {/*Decided to group Filter, Decks, and th search bar together so they can be moved as one. */}

@@ -16,7 +16,7 @@
 }
 
 .top-left-logo {
-  height: 48px;
+  height: 145px;
   width: auto;
   border-radius: 6px;
 }
@@ -27,3 +27,4 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+
