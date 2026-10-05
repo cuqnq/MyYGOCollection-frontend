@@ -20,7 +20,7 @@ function App() {
       let updatedList;
 
       if (isAlreadySelected) {
-        updatedList = currentList.filter((item) => item !== value);
+        updatedList = currentList.filter((item) => item !== value); 
       }
       else {
         updatedList = [...currentList, value];
