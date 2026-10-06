@@ -1,30 +1,11 @@
-import { useState, useEffect } from "react";
 import "./BottomLeft.css";
 
-function BottomLeft() {
-  const [cards, setCards] = useState([]);     // holds card data once fetched
-  const [loading, setLoading] = useState(true); // true until fetch finishes
-  const [error, setError] = useState(null);    // holds error message, if any
+//NOTE: These are the props from App.jsx
+// cards = array of card objects from GET/api/collection
+// loading = true while APp is still fetching
+// error = error message string if the fetch failed, otherwise null
 
-  // Runs once on mount ([] dependency array) to fetch the collection
-  useEffect(() => {
-    fetch("http://localhost:5000/api/collection")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Server responded with status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setCards(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
-
+function BottomLeft({cards, loading, error}) {
   if (loading) {
     return <div className="bottom-left">
       Loading collection...

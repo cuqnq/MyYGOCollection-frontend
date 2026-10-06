@@ -6,7 +6,7 @@ import Button from './ui_tools/Button';
 function TopLeft() {
   return (
     <div className="top-left">
-        <img className ="top-left-logo" img src = {MenuIcon} alt = "Habakiri was here." />
+        <img className ="top-left-logo" src = {MenuIcon} alt = "Habakiri was here." />
 
 
 {/*Decided to group Filter, Decks, and th search bar together so they can be moved as one. */}
