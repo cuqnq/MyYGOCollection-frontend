@@ -9,17 +9,21 @@
 /* Sorts the cards into a 5 by 5 grid. */
 .card-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
-  grid-template-rows: repeat(5, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(7, 1fr); 
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
   list-style: none;
-  padding: 0;
+  padding: 20px;
+  /*  padding-left: 20px;  /*Considering to leave padding only to left and right 
+  /* padding-right: 20px; */
+
 }
 
 /*Controls the size of the card display */
 .card-thumbnail {
-  height: 300px;
-  width: 200px;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
 }
 
 /*Controls the position of the card name text */

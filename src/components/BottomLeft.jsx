@@ -5,7 +5,7 @@ import "./BottomLeft.css";
 // loading = true while APp is still fetching
 // error = error message string if the fetch failed, otherwise null
 
-function BottomLeft({cards, loading, error}) {
+function BottomLeft({cards, loading, error, onSelectCard}) {
   if (loading) {
     return <div className="bottom-left">
       Loading collection...
@@ -22,7 +22,7 @@ function BottomLeft({cards, loading, error}) {
     <div className="bottom-left">
       <ul className="card-list">
         {cards.map((card) => (
-          <li key={card.id} className="card-list-item">
+          <li key={card.id} className="card-list-item" onClick = {() => onSelectCard(card.id)}>
             {card.image_url && (
               <img
                 src={card.image_url}

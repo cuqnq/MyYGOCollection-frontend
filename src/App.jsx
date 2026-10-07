@@ -9,6 +9,9 @@ function App() {
   const [cards, setCards] = useState([]);       // holds card data once fetched
   const [loading, setLoading] = useState(true); // true until fetch finishes
   const [error, setError] = useState(null);     // holds error message, if any
+  const [selectedCardId, setSelectedCardId] = useState(null);
+
+  const selectedCard = cards.find((card) => card.id === selectedCardId)
 
   // NEW: moved from BottomLeft.jsx.
   // Runs once when the app first loads ([] dependency array) to fetch the collection.
@@ -61,8 +64,11 @@ function App() {
   return (
     <div className="container">
         <TopLeft /> {/* Grid autoplacement ruling applies here (cell 1 (row 1, col 1), cell 2... etc.*/}
-        <RightSideBar />
-        <BottomLeft cards = {cards} loading = {loading} error = {error}/>
+
+        <BottomLeft cards = {cards} loading = {loading} error = {error} onSelectCard = {setSelectedCardId} />
+
+        <RightSideBar card = {selectedCard}/>
+        
     </div>
   );
 }

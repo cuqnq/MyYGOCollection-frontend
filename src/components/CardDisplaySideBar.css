@@ -11,3 +11,12 @@
   background-color: var(--bg);
   flex-wrap: wrap;
 }
+
+.sidebar-thumbnail {
+  height: 1050px;
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+  object-fit: cover;
+  box-sizing: border-box;
+}
