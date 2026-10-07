@@ -12,11 +12,16 @@
   flex-wrap: wrap;
 }
 
+.cardHolder{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .sidebar-thumbnail {
-  height: 1050px;
+  height: auto;
+  /*max-height: 845px; /*Good at 645px */
   width: 100%;
-  max-width: 900px;
+  max-width: 600px; /*Good at 450px (MUST BE 245 PX LESS THAN HEIGHT*/
   padding: 20px;
-  object-fit: cover;
   box-sizing: border-box;
 }

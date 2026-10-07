@@ -16,8 +16,8 @@
 }
 
 .top-left-logo {
-  height: 145px;
-  width: auto;
+  height: auto;
+  width: clamp(140px, 22vw, 305px);
   border-radius: 6px;
 }
 

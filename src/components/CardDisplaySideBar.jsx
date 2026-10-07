@@ -70,7 +70,7 @@ function RightSideBar({ card }) {
           <img
             src={card.image_url}
             alt={card.card_name}
-            className="card-thumbnail"
+            className="sidebar-thumbnail"
           />
         )}
 
