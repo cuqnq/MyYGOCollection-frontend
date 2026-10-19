@@ -2,7 +2,7 @@ import "./App.css";
 import TopLeft from './components/TopLeft';
 import BottomLeft from './components/BottomLeft';
 import RightSideBar from './components/CardDisplaySideBar';
-import { useState, useEffect } from "react";   // NEW: added useEffect
+import { useState, useEffect } from "react";  
 
 function App() {
 
@@ -13,7 +13,6 @@ function App() {
 
   const selectedCard = cards.find((card) => card.id === selectedCardId)
 
-  // NEW: moved from BottomLeft.jsx.
   // Runs once when the app first loads ([] dependency array) to fetch the collection.
   useEffect(() => {
     fetch("http://localhost:5000/api/collection")
@@ -61,13 +60,30 @@ function App() {
     });
   }
 
+  function handleChangeQuantity(cardId, change) {
+    fetch(`http://localhost:5000/api/collection/${cardId}/change`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ change: change }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Change result:", data)
+        })
+}
+
   return (
     <div className="container">
         <TopLeft /> {/* Grid autoplacement ruling applies here (cell 1 (row 1, col 1), cell 2... etc.*/}
 
-        <BottomLeft cards = {cards} loading = {loading} error = {error} onSelectCard = {setSelectedCardId} />
+        <BottomLeft cards = {cards} loading = {loading} error = {error} onSelectCard = {setSelectedCardId} onChangeQuantity = {handleChangeQuantity} />
 
-        <RightSideBar card = {selectedCard}/>
+        <RightSideBar card = {selectedCard} onChangeQuantity = {handleChangeQuantity}/>
         
     </div>
   );

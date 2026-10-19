@@ -45,7 +45,7 @@ function hasValue(value) {
   return value !== null && value !== undefined && value !== "";
 }
 
-function RightSideBar({ card }) {
+function RightSideBar({ card, onChangeQuantity }) {
   //When no card is selected yet, this message will appear.
   if (!card) {
     return (
@@ -78,7 +78,13 @@ function RightSideBar({ card }) {
         <h2>{card.card_name}</h2>
         <p>Set: {card.set_code}</p>
         <p>Rarity: {card.rarity}</p>
-        <p>Quantity: {card.quantity}</p>
+        
+        <div className="quantity-controls">
+          <button className="sidebr-qty subtract-btn" onClick={() => onChangeQuantity(card.id, -1)}>-</button>
+          <p>Quantity: {card.quantity}</p>
+          <button className="sidebr-qty add-btn" onClick={() => onChangeQuantity(card.id, 1)}>+</button>
+        </div>
+
 
         {/* Cosmetic extras: only shown when true */}
         {card.alternative_art && <p>Alternate Art</p>}
@@ -88,6 +94,8 @@ function RightSideBar({ card }) {
           // Monster details
           <>
             {typeLine && <p>{typeLine}</p>}
+            {/*True when a column was actually filled in.
+              instead of treating it as "empty".*/}
             {hasValue(card.monster_attribute) && <p>Attribute: {card.monster_attribute}</p>}
             {hasValue(card.level_rank) && <p>{levelLabel}: {card.level_rank}</p>}
             {hasValue(card.pendulum_scale) && <p>Pendulum Scale: {card.pendulum_scale}</p>}

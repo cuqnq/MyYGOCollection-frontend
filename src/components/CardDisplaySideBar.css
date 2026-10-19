@@ -25,3 +25,45 @@
   padding: 20px;
   box-sizing: border-box;
 }
+
+
+/* Lines up the - button, quantity and + button side by side */
+.quantity-controls {
+  display: flex;           
+  align-items: center;     
+  justify-content: center; 
+  gap: 12px;              
+}
+
+/* Removes the <p>'s default top and bottom margin so it lines up with the buttons */
+.quantity-controls p {
+  margin: 0;
+}
+
+/* Shared style for both quantity buttons */
+.sidebr-qty {
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  font-family: inherit;     /* buttons don't use the page's font unless told to */
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;          /* shows the hand cursor on hover */
+}
+
+/* "-" button */
+.subtract-btn {
+  background-color: var(--grey-olive);
+}
+
+/* "+" button */
+.add-btn {
+  background-color: var(--steel-blue);
+}
+
+/* Lighter color when hovering over either button */
+.sidebr-qty:hover {
+  background-color: var(--icy-blue);
+}

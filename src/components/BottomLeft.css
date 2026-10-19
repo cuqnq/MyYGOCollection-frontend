@@ -33,3 +33,46 @@
   align-items: center;
   text-align: center;
 }
+
+/*Lines up the - button, quantity and + button side by side under each card*/
+.card-qty-controls {
+  display: flex;            
+  align-items: center;     
+  justify-content: center;  
+  gap: 8px;                 
+  margin-top: 6px;          
+}
+
+/*Removes the <p>'s default margin so the number lines up with the buttons */
+.card-qty-controls p {
+  margin: 0;
+  min-width: 20px;          /* keeps the group from shifting when the number goes from 9 to 10 */
+}
+
+/*Shared style for both buttons (smaller than the sidebar's, since the grid is tighter) */
+.quantity-btn {
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* "-" button */
+.decrease-qty {
+  background-color: var(--grey-olive);
+}
+
+/* "+" button */
+.increase-qty {
+  background-color: var(--steel-blue);
+}
+
+/* Lighter color on hover */
+.quantity-btn:hover {
+  background-color: var(--icy-blue);
+}

@@ -5,7 +5,7 @@ import "./BottomLeft.css";
 // loading = true while APp is still fetching
 // error = error message string if the fetch failed, otherwise null
 
-function BottomLeft({cards, loading, error, onSelectCard}) {
+function BottomLeft({cards, loading, error, onSelectCard, onChangeQuantity}) {
   if (loading) {
     return <div className="bottom-left">
       Loading collection...
@@ -30,7 +30,26 @@ function BottomLeft({cards, loading, error, onSelectCard}) {
                 className="card-thumbnail"
               />
             )}
-            {card.card_name} — {card.rarity} (x{card.quantity})
+            {/* {card.card_name} — {card.rarity} (x{card.quantity}) */}
+            <div className="card-qty-controls">
+              <button className="quantity-btn decrease-qty" onClick={(event) => {
+                  event.stopPropagation();          // don't also select the card
+                  onChangeQuantity(card.id, -1);
+                }}
+              >
+                - {/*Just a FYI, this is the "-" on display */}
+              </button>
+
+              <p>{card.quantity}</p>
+
+              <button className="quantity-btn increase-qty" onClick={(event) => {
+                  event.stopPropagation();          // don't also select the card
+                  onChangeQuantity(card.id, 1);
+                }}
+              >
+                +   {/*The "+" on display */}
+              </button>
+            </div>
           </li>
         ))}
       </ul>
