@@ -8,6 +8,7 @@
   font-size: clamp(5px, 1.5vw, 50px);
   padding: clamp(4px, 1vw, 12px);
   min-width: 0;
+  height: auto;
   width: clamp(70px, 12vw, 110px);
   border-radius: 15px;
   border: none;

@@ -60,22 +60,34 @@ function App() {
     });
   }
 
+
+
+  //Function is called when the + or - buttons are clicked.
+  //         cardId = which card to modify, change = quantity modification (+1 or -1) 
   function handleChangeQuantity(cardId, change) {
+    //Basically, a button click asks Flask to change this card's amount.
+    //${cardId} puts the card's unique ID into the web address. EX:Kuriboh's ID is 5 --> (/api/collection/5/change)
     fetch(`http://localhost:5000/api/collection/${cardId}/change`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ change: change }),
+      method: "PATCH", //Update something
+      headers: { "Content-Type": "application/json" }, //Tells Flask that we're sending JSON
+      body: JSON.stringify({ change: change }), //packs {change: 1} into text to send
+      //For anyone else reading this: Why change is 1? See where onChangeQuantity is called in CardDisplaySideBar.jsx and BottomLeft.jsx.
   })
     .then((response) => {
       if (!response.ok) {
+        //If there's a problem, STOP & REPORT IT!
         throw new Error(`Server responded with status ${response.status}`);
       }
       return response.json();
     })
     .then((data) => {
       console.log("Change result:", data)
-        })
-}
+      //Build a NEW list of cards (React needs an new array to be aware of the change).
+      // - If it's the card Flask just changed (same id), return a copy with the new quantity
+      const updatedCards = cards.map((card) => card.id === data.id ? {...card, quantity: data.quantity} : card);
+      setCards(updatedCards); //Saves the list, website displays the new amount.
+    });
+  }
 
   return (
     <div className="container">
