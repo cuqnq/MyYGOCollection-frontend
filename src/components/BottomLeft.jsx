@@ -24,11 +24,19 @@ function BottomLeft({cards, loading, error, onSelectCard, onChangeQuantity}) {
         {cards.map((card) => (
           <li key={card.id} className="card-list-item" onClick = {() => onSelectCard(card.id)}>
             {card.image_url && (
-              <img
-                src={card.image_url}
-                alt={card.card_name}
-                className="card-thumbnail"
-              />
+              // Fills the space above the buttons. It measures that space so .card-art can size itself.
+              <div className="card-art-area">
+                {/* Box exactly the size of the card picture, so the set code lines up with the art's corner */}
+                <div className="card-art">
+                  <img
+                    src={card.image_url}
+                    alt={card.card_name}
+                    className="card-thumbnail"
+                  />
+                  {/* Set code on top of the art's bottom-left corner, so 2 printings of the same card can be told apart */}
+                  <span className="set-code-tag">{card.set_code}</span>
+                </div>
+              </div>
             )}
             {/* {card.card_name} — {card.rarity} (x{card.quantity}) */}
             <div className="card-qty-controls">
@@ -39,7 +47,7 @@ function BottomLeft({cards, loading, error, onSelectCard, onChangeQuantity}) {
               >
                 - {/*Just a FYI, this is the "-" on display */}
               </button>
-
+              
               <p>{card.quantity}</p>
 
               <button className="quantity-btn increase-qty" onClick={(event) => {

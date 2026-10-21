@@ -14,19 +14,12 @@ function TopLeft() {
         <Button 
           label="Decks" 
           color= "var(--accent)" 
-          fontSize="18px" 
-          padding="8px 12px"
-          /* style={{ marginLeft: 'auto' }} /*Any button after this line will be shifted towards the bottom right */
-          /*Buttons before are not affected*/
-
           onClick={() => alert("Deck feature will be coming soon in the future!")} 
         />
 
         <Button 
           label="Filter" 
           color="var(--dusk-blue)" 
-          fontSize="18px" 
-          padding="8px 16px" 
         />
 
         <SearchBar />
@@ -35,8 +28,6 @@ function TopLeft() {
         <Button 
           label="Add Card" 
           color="var(--dusk-blue)" 
-          fontSize="18px" 
-          padding="8px 16px" 
         />
     </div>
   );

@@ -10,21 +10,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 16px;
-  gap: 12px;
+  flex-wrap: nowrap;
+  padding: clamp(6px, 1.2vw, 16px);
+  gap: clamp(6px, 1vw, 12px);
+  min-width: 0;
 }
 
 .top-left-logo {
   height: auto;
-  width: clamp(140px, 22vw, 305px);
+  width: clamp(70px, 20vw, 305px);
+  min-width: 0;
   border-radius: 6px;
 }
 
 .top-left-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: clamp(4px, 0.8vw, 10px);
+  flex-wrap: nowrap;
+  min-width: 0;
 }
 

@@ -5,12 +5,11 @@
 
 .app-button button {
   color: white;
-  font-size: clamp(5px, 1.5vw, 50px);
-  padding: clamp(4px, 1vw, 12px);
-  min-width: 0;
-  height: auto;
-  width: clamp(70px, 12vw, 110px);
-  border-radius: 15px;
+  font-size: clamp(11px, 1.3vw, 18px);
+  padding: clamp(4px, 0.6vw, 8px) clamp(4px, 0.8vw, 16px);
+  min-width: clamp(40px, 7vw, 110px);
+  white-space: nowrap;
+  border-radius: clamp(8px, 1vw, 15px);
   border: none;
   cursor: pointer;
   transition: transform 0.1s ease, opacity 0.1s ease;

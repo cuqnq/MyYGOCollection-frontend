@@ -3,57 +3,88 @@
   border-left: 6px solid var(--border);
   border-bottom: 6px solid var(--border);
   background-color: var(--platinum);
-  flex-wrap: wrap;
+
+  min-height: 0;      /* lets the box stay the size of its grid cell */
+  overflow-y: auto;   /* extra cards scroll INSIDE the box */
 }
 
-/* Sorts the cards into a 5 by 5 grid. */
+/* Fits as many columns as the box has room for.
+   Each card is at least clamp(80px, 9vw, 140px) wide, and they stretch to fill the row. */
 .card-list {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); 
-  grid-template-rows: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(80px, 9vw, 140px), 1fr));
+  gap: clamp(8px, 1.5vw, 20px);
   list-style: none;
-  padding: 20px;
-  /*  padding-left: 20px;  /*Considering to leave padding only to left and right 
-  /* padding-right: 20px; */
-
+  margin: 0;                         /* <ul> has a default margin; remove it */
+  padding: clamp(8px, 1.5vw, 20px);
 }
 
-/*Controls the size of the card display */
-.card-thumbnail {
-  height: auto;
-  width: 100%;
-  object-fit: cover;
-}
-
-/*Controls the position of the card name text */
 .card-list-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  min-width: 0;     /* lets the card shrink with its column */
 }
 
-/*Lines up the - button, quantity and + button side by side under each card*/
+/* Outer wrapper around the art. Takes the full width of the card's column. */
+.card-art-area {
+  width: 100%;
+}
+
+/* Box around the picture. position: relative lets the set code tag sit ON TOP of the art.
+   Since the image is width: 100% / height: auto, this box is exactly the size of the picture. */
+.card-art {
+  position: relative;
+  width: 100%;
+}
+
+/* Controls the size of the card display */
+.card-thumbnail {
+  display: block;   /* removes the small gap browsers leave under images */
+  width: 100%;
+  height: auto;
+}
+
+/* The set code label in the bottom-left corner of the art */
+.set-code-tag {
+  position: absolute;     /* placed on top of the image instead of below it */
+  left: 4%;
+  bottom: 3%;
+  max-width: 92%;         /* never wider than the card */
+
+  padding: 1px 4px;
+  font-size: clamp(7px, 0.7vw, 12px);
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.65);   /* see-through black so it's readable on any art */
+  border-radius: 3px;
+
+  white-space: nowrap;      /* keeps the code on one line */
+  overflow: hidden;         /* safety net: if it's ever too long, cut it off... */
+  text-overflow: ellipsis;  /* ...and show "..." instead of spilling out */
+  pointer-events: none;     /* clicks go through the label to the card underneath */
+}
+
 .card-qty-controls {
-  display: flex;            
-  align-items: center;     
-  justify-content: center;  
-  gap: 8px;                 
-  margin-top: 6px;          
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;         /* tighter so it fits small cards */
+  margin-top: 6px;
 }
 
-/*Removes the <p>'s default margin so the number lines up with the buttons */
 .card-qty-controls p {
   margin: 0;
-  min-width: 20px;          /* keeps the group from shifting when the number goes from 9 to 10 */
+  min-width: 2ch;   /* room for 2 digits, so 9 -> 10 doesn't shift the buttons */
 }
 
-/*Shared style for both buttons (smaller than the sidebar's, since the grid is tighter) */
+/* Buttons shrink a little on small windows */
 .quantity-btn {
-  width: 26px;
-  height: 26px;
-  font-size: 16px;
+  width: clamp(20px, 2vw, 26px);
+  height: clamp(20px, 2vw, 26px);
+  font-size: clamp(12px, 1.2vw, 16px);
+  padding: 0;       /* buttons have default padding that crowds the "+" and "-" */
   font-family: inherit;
   font-weight: bold;
   color: white;

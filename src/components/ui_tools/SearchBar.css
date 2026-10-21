@@ -1,16 +1,15 @@
 .search-bar input {
-  width: clamp(160px, 22vw, 320px);
+  width: clamp(70px, 18vw, 320px);
   min-width: 0;
-  padding: 8px 12px;
-  font-size: 15px;
+  padding: clamp(4px, 0.6vw, 8px) clamp(6px, 0.8vw, 12px);
+  font-size: clamp(11px, 1.1vw, 15px);
   color: var(--gold);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  box-sizing: border-box;
+  border-radius: clamp(6px, 0.8vw, 10px);
 }
 
 .search-bar {  
     display: flex;
-    align-self: flex-end;
     align-items: center;
+    min-width: 0;
 }
