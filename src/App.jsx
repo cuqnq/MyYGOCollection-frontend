@@ -2,7 +2,7 @@ import "./App.css";
 import TopLeft from './components/TopLeft';
 import BottomLeft from './components/BottomLeft';
 import RightSideBar from './components/CardDisplaySideBar';
-import { useState, useEffect } from "react";  
+import { useState, useEffect } from "react";
 
 function App() {
 
@@ -40,14 +40,14 @@ function App() {
   });
 
   function onToggleOption(category, value) {
-    setFilters (function (previousFilters) {
+    setFilters(function (previousFilters) {
       const currentList = previousFilters[category];
       const isAlreadySelected = currentList.includes(value);
 
       let updatedList;
 
       if (isAlreadySelected) {
-        updatedList = currentList.filter((item) => item !== value); 
+        updatedList = currentList.filter((item) => item !== value);
       }
       else {
         updatedList = [...currentList, value];
@@ -72,31 +72,44 @@ function App() {
       headers: { "Content-Type": "application/json" }, //Tells Flask that we're sending JSON
       body: JSON.stringify({ change: change }), //packs {change: 1} into text to send
       //For anyone else reading this: Why change is 1? See where onChangeQuantity is called in CardDisplaySideBar.jsx and BottomLeft.jsx.
-  })
-    .then((response) => {
-      if (!response.ok) {
-        //If there's a problem, STOP & REPORT IT!
-        throw new Error(`Server responded with status ${response.status}`);
-      }
-      return response.json();
     })
-    .then((data) => {
-      console.log("Change result:", data)
-      //Build a NEW list of cards (React needs an new array to be aware of the change).
-      // - If it's the card Flask just changed (same id), return a copy with the new quantity
-      const updatedCards = cards.map((card) => card.id === data.id ? {...card, quantity: data.quantity} : card);
-      setCards(updatedCards); //Saves the list, website displays the new amount.
-    });
+      .then((response) => {
+        if (!response.ok) {
+          //If there's a problem, STOP & REPORT IT!
+          throw new Error(`Server responded with status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Change result:", data)
+        //Flask sets deleted to true when the card's quantity reached 0 and it was removed from the database.
+        if (data.deleted) {
+          // 1. remove the card from cards (using .filter)
+          const updatedCards = cards.filter((card) => card.id !== data.id);
+          setCards(updatedCards);
+          
+          //If the deleted card is the one open in the right sidebar, close the sidebar.
+          //If a DIFFERENT card is open, leave it alone.
+          if (selectedCardId === data.id) {
+            setSelectedCardId(null);
+          }
+        } else {
+          //Build a NEW list of cards (React needs an new array to be aware of the change).
+          // - If it's the card Flask just changed (same id), return a copy with the new quantity
+          const updatedCards = cards.map((card) => card.id === data.id ? { ...card, quantity: data.quantity } : card);
+          setCards(updatedCards); //Saves the list, website displays the new amount.
+        }
+      });
   }
 
   return (
     <div className="container">
-        <TopLeft /> {/* Grid autoplacement ruling applies here (cell 1 (row 1, col 1), cell 2... etc.*/}
+      <TopLeft /> {/* Grid autoplacement ruling applies here (cell 1 (row 1, col 1), cell 2... etc.*/}
 
-        <BottomLeft cards = {cards} loading = {loading} error = {error} onSelectCard = {setSelectedCardId} onChangeQuantity = {handleChangeQuantity} />
+      <BottomLeft cards={cards} loading={loading} error={error} onSelectCard={setSelectedCardId} onChangeQuantity={handleChangeQuantity} />
 
-        <RightSideBar card = {selectedCard} onChangeQuantity = {handleChangeQuantity}/>
-        
+      <RightSideBar card={selectedCard} onChangeQuantity={handleChangeQuantity} />
+
     </div>
   );
 }
