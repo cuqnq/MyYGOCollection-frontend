@@ -65,6 +65,27 @@ function App() {
   //Function is called when the + or - buttons are clicked.
   //         cardId = which card to modify, change = quantity modification (+1 or -1) 
   function handleChangeQuantity(cardId, change) {
+
+    //---------- CONFIRMATION BEFORE DELETING THE LAST COPY ----------
+    //Find the card that was clicked, so we know its name and current quantity.
+    const clickedCard = cards.find((card) => card.id === cardId);
+
+    //This click would delete the card if:
+    // - the card was found (clickedCard is not undefined),
+    // - AND the "-" button was pressed (change is -1),
+    // - AND only 1 copy is left (so 1 - 1 = 0, and Flask deletes it).
+    if (clickedCard && change === -1 && clickedCard.quantity === 1) {
+
+      //Confirmation Pop up.
+      const confirmed = window.confirm(`Remove your last copy of ${clickedCard.card_name} (${clickedCard.rarity})?`);
+
+      //If Cancel was clicked, leave the function now.
+      if (!confirmed) {
+        return;
+      }
+    }
+    //--------------------------------------------------------------- 
+
     //Basically, a button click asks Flask to change this card's amount.
     //${cardId} puts the card's unique ID into the web address. EX:Kuriboh's ID is 5 --> (/api/collection/5/change)
     fetch(`http://localhost:5000/api/collection/${cardId}/change`, {
@@ -81,13 +102,13 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        console.log("Change result:", data)
+        console.log("Change result:", data);
         //Flask sets deleted to true when the card's quantity reached 0 and it was removed from the database.
         if (data.deleted) {
           // 1. remove the card from cards (using .filter)
           const updatedCards = cards.filter((card) => card.id !== data.id);
           setCards(updatedCards);
-          
+
           //If the deleted card is the one open in the right sidebar, close the sidebar.
           //If a DIFFERENT card is open, leave it alone.
           if (selectedCardId === data.id) {
@@ -99,6 +120,10 @@ function App() {
           const updatedCards = cards.map((card) => card.id === data.id ? { ...card, quantity: data.quantity } : card);
           setCards(updatedCards); //Saves the list, website displays the new amount.
         }
+      })
+      .catch((err) => {
+        console.error("Change failed:", err);
+        window.alert("Couldn't update the quantity. Is the Flask server running?");
       });
   }
 
