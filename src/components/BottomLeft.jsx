@@ -18,6 +18,16 @@ function BottomLeft({cards, loading, error, onSelectCard, onChangeQuantity}) {
       </div>;
   }
 
+  //When the search is matched with no cards or the collection is empty.
+  //PS: cards here is the FILTERED list from App.jsx, not the full collection.
+  if (cards.length === 0) {
+    return (
+      <div className="bottom-left">
+        <p className="empty-message">No cards found.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bottom-left">
       <ul className="card-list">

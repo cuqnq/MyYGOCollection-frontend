@@ -9,9 +9,20 @@ function App() {
   const [cards, setCards] = useState([]);       // holds card data once fetched
   const [loading, setLoading] = useState(true); // true until fetch finishes
   const [error, setError] = useState(null);     // holds error message, if any
-  const [selectedCardId, setSelectedCardId] = useState(null);
 
+  const [searchText, setSearchText] = useState("");
+  
+  //Remembers the ID of the card the user clicked (starts at null = nothing selected).
+  //setSelectedCardId() changes it AND tells React to redraw the page.
+  const [selectedCardId, setSelectedCardId] = useState(null);
+  
+  //Turns the ID into the whole card: looks through the list of cards for the one with the matching ID.
+  //Gives undefined if nothing is selected (or the card was deleted), so the sidebar shows its starting message.
   const selectedCard = cards.find((card) => card.id === selectedCardId)
+  const filteredCards = cards.filter((card) => card.card_name.toLowerCase().includes(searchText.toLowerCase()) 
+  || card.set_code.toLowerCase().includes(searchText.toLowerCase())
+  );
+
 
   // Runs once when the app first loads ([] dependency array) to fetch the collection.
   useEffect(() => {
@@ -71,9 +82,9 @@ function App() {
     const clickedCard = cards.find((card) => card.id === cardId);
 
     //This click would delete the card if:
-    // - the card was found (clickedCard is not undefined),
-    // - AND the "-" button was pressed (change is -1),
-    // - AND only 1 copy is left (so 1 - 1 = 0, and Flask deletes it).
+    // > the card was found (clickedCard is not undefined),
+    // > AND the "-" button was pressed (change is -1),
+    // > AND only 1 copy is left (so 1 - 1 = 0, and Flask deletes it).
     if (clickedCard && change === -1 && clickedCard.quantity === 1) {
 
       //Confirmation Pop up.
@@ -129,9 +140,9 @@ function App() {
 
   return (
     <div className="container">
-      <TopLeft /> {/* Grid autoplacement ruling applies here (cell 1 (row 1, col 1), cell 2... etc.*/}
+      <TopLeft searchText={searchText} onSearchTextChange={setSearchText} /> {/* Grid autoplacement ruling applies here (cell 1 (row 1, col 1), cell 2... etc.*/}
 
-      <BottomLeft cards={cards} loading={loading} error={error} onSelectCard={setSelectedCardId} onChangeQuantity={handleChangeQuantity} />
+      <BottomLeft cards={filteredCards} loading={loading} error={error} onSelectCard={setSelectedCardId} onChangeQuantity={handleChangeQuantity} />
 
       <RightSideBar card={selectedCard} onChangeQuantity={handleChangeQuantity} />
 

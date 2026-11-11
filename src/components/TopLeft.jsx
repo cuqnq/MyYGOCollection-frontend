@@ -3,7 +3,7 @@ import SearchBar from './ui_tools/SearchBar';
 import MenuIcon from '../assets/HABAKIRI_SoTa.png';
 import Button from './ui_tools/Button';
 
-function TopLeft() {
+function TopLeft({searchText, onSearchTextChange}) {
   return (
     <div className="top-left">
         <img className ="top-left-logo" src = {MenuIcon} alt = "Habakiri was here." />
@@ -22,7 +22,9 @@ function TopLeft() {
           color="var(--dusk-blue)" 
         />
 
-        <SearchBar />
+        <SearchBar
+          searchText = {searchText}
+          onSearchTextChange = {onSearchTextChange} />
       </div>
 
         <Button 

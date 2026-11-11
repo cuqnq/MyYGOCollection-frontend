@@ -8,6 +8,14 @@
   overflow-y: auto;   /* extra cards scroll INSIDE the box */
 }
 
+/* Message shown when no cards match the search */
+.empty-message {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  color: var(--dusk-blue);
+}
+
 /* Fits as many columns as the box has room for.
    Each card is at least clamp(80px, 9vw, 140px) wide, and they stretch to fill the row. */
 .card-list {
